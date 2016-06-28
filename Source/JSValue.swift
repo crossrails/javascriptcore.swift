@@ -1,11 +1,3 @@
-//
-//  JSValue.swift
-//  SwiftJSCWrapper
-//
-//  Created by Andrew Reed on 26/05/2016.
-//  Copyright © 2016 Crossrails. All rights reserved.
-//
-
 import Foundation
 import JavaScriptCore
 
