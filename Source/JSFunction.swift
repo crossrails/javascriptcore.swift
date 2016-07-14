@@ -8,6 +8,7 @@ protocol JSFunction {
 }
 
 extension JSValue : JSFunction {
+    @discardableResult
     func call(_ this :JSThis, args :JSValue...) throws -> JSValue {
         return try self.call(this, args: args)
     }
