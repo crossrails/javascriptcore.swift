@@ -1,7 +1,7 @@
 import Foundation
 import JavaScriptCore
 
-protocol JSThis {
+protocol JSThis : class {
     
     var ref : JSObjectRef { get }
     
