@@ -22,7 +22,7 @@ protocol JSThis : class {
     
     func valueOf<Element>(_ value: Array<Element>, element:@noescape(Element) -> JSValue) -> JSValue
     
-    func valueOf(_ object: AnyObject) -> JSValue?
+    func valueOf(_ object: AnyObject) -> JSValue
     
     func valueOf(_ object: AnyObject, with eval :(JSContext) -> (JSValue)) -> JSValue
     
@@ -63,8 +63,8 @@ extension JSValue : JSThis {
             })
     }
     
-    func valueOf(_ object: AnyObject) -> JSValue? {
-        return bindings.object(forKey: object)
+    func valueOf(_ object: AnyObject) -> JSValue {
+        return bindings.object(forKey: object)!
     }
     
     func valueOf<T :AnyObject>(_ object: T, with eval :(JSContext) -> (JSValue)) -> JSValue {
