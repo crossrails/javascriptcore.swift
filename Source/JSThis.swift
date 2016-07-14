@@ -7,7 +7,6 @@ protocol JSThis : class {
     
     var context : JSContext { get }
     
-    @discardableResult
     subscript(property: JSProperty) -> JSValue { get set }
     
     subscript(property: JSProperty) -> (_ :JSValue...) throws -> (JSValue) { get }
