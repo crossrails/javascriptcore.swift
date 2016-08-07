@@ -1,39 +1,39 @@
 import Foundation
 import JavaScriptCore
 
-class JSObject : JSValue {
+class JSObject: JSValue {
     
-    private let object :AnyObject?
-    private let callbacks: [String :([JSValue]) throws -> (JSValue?)]
+    private let object: AnyObject?
+    private let callbacks: [String: ([JSValue]) throws -> (JSValue?)]
     
-    convenience init(_ context :JSContext, wrap object: AnyObject?) {
+    convenience init(_ context: JSContext, wrap object: AnyObject?) {
         self.init(context, object: object, callbacks: [:])
     }
     
-    convenience init(_ context :JSContext, callback: ([JSValue]) throws -> (JSValue?)) {
-        self.init(context, callbacks:["Function": callback])
+    convenience init(_ context: JSContext, callback: ([JSValue]) throws -> (JSValue?)) {
+        self.init(context, callbacks: ["Function": callback])
         JSObjectSetPrototype(context.ref, self.ref, context.globalObject[Function].ref)
     }
     
-    convenience init(_ context :JSContext, callbacks: [String :([JSValue]) throws -> (JSValue?)]) {
+    convenience init(_ context: JSContext, callbacks: [String: ([JSValue]) throws -> (JSValue?)]) {
         self.init(context, object: nil, callbacks: callbacks)
     }
     
-    convenience init(_ context :JSContext, prototype :JSThis, callbacks: [String :([JSValue]) throws -> (JSValue?)]) {
+    convenience init(_ context: JSContext, prototype: JSThis, callbacks: [String: ([JSValue]) throws -> (JSValue?)]) {
         self.init(context, object: nil, callbacks: callbacks)
         JSObjectSetPrototype(context.ref, JSObjectGetPrototype(context.ref, self.ref), prototype.ref)
     }
     
-    private init(_ context :JSContext, object: AnyObject?, callbacks: [String :([JSValue]) throws -> (JSValue?)]) {
+    private init(_ context: JSContext, object: AnyObject?, callbacks: [String: ([JSValue]) throws -> (JSValue?)]) {
         self.object = object
         self.callbacks = callbacks
-        var definition :JSClassDefinition = kJSClassDefinitionEmpty
+        var definition: JSClassDefinition = kJSClassDefinitionEmpty
         definition.finalize = {
             Unmanaged<JSObject>.fromOpaque(JSObjectGetPrivate($0)).release()
         }
         definition.callAsFunction = { (_, function, this, argCount, args, exception) -> JSValueRef? in
             let data = JSObjectGetPrivate(this)
-            let object :JSObject = Unmanaged.fromOpaque((data == nil ? JSObjectGetPrivate(function) : data)!).takeUnretainedValue()
+            let object: JSObject = Unmanaged.fromOpaque((data == nil ? JSObjectGetPrivate(function): data)!).takeUnretainedValue()
             do {
                 let value = JSValue(object.context, ref: function!)
                 var arguments = [JSValue]()
@@ -50,7 +50,7 @@ class JSObject : JSValue {
                 value = JSObjectMakeError(object.context.ref, 1, &message, &value)
                 exception?.initialize(to: value)
             } catch {
-                var value : JSValueRef? = nil
+                var value: JSValueRef? = nil
                 value = JSObjectMakeError(object.context.ref, 0, nil, &value)
                 exception?.initialize(to: value)
             }

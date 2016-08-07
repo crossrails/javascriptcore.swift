@@ -3,17 +3,17 @@ import JavaScriptCore
 
 protocol JSFunction {
     func bind(_ object: AnyObject)
-    func call(_ this :JSThis, args :JSValue...) throws -> JSValue
-    func call(_ this :JSThis, args :[JSValue]) throws -> JSValue
+    func call(_ this: JSThis, args: JSValue...) throws -> JSValue
+    func call(_ this: JSThis, args: [JSValue]) throws -> JSValue
 }
 
-extension JSValue : JSFunction {
+extension JSValue: JSFunction {
     @discardableResult
-    func call(_ this :JSThis, args :JSValue...) throws -> JSValue {
+    func call(_ this: JSThis, args: JSValue...) throws -> JSValue {
         return try self.call(this, args: args)
     }
     
-    func call(_ this :JSThis, args :[JSValue]) throws -> JSValue {
+    func call(_ this: JSThis, args: [JSValue]) throws -> JSValue {
         //        print("calling \(self) with \(args) on object \(this)")
         //        for arg in args {
         //            if(JSValueIsObject(context.ref, arg.ref)) {
