@@ -1,7 +1,7 @@
 import Foundation
 import JavaScriptCore
 
-let bindings = MapTable<AnyObject, JSValue>(keyOptions: [.objectPointerPersonality, .weakMemory], valueOptions: [.objectPointerPersonality])
+let bindings = NSMapTable<AnyObject, JSValue>(keyOptions: [.objectPointerPersonality, .weakMemory], valueOptions: [.objectPointerPersonality])
 
 struct JSContext {
     
@@ -27,19 +27,19 @@ struct JSContext {
         }
     }
     
-    func invoke<T>( _ f: @noescape(inout exception :JSValueRef? ) -> T) throws -> T {
+    func invoke<T>( _ f: @noescape(exception: inout JSValueRef?) -> T) throws -> T {
         var exception :JSValueRef? = nil
         let result = f(exception: &exception)
         if exception != nil {
             print("Exception thrown: \(String(self, ref: exception!))")
-            throw Error(JSValue(self, ref: exception!))
+            throw JSError(JSValue(self, ref: exception!))
         }
         return result
     }
     
 }
 
-public struct Error: ErrorProtocol, CustomStringConvertible {
+public struct JSError: Error, CustomStringConvertible {
     
     let exception :JSValue
     

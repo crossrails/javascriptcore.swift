@@ -42,17 +42,17 @@ class JSObject : JSValue {
                 }
                 let callback = object.callbacks[String(value[name])]!
                 return try callback(arguments)?.ref ?? JSValueMakeUndefined(object.context.ref)
-            } catch let error as Error {
-                exception?.initialize(with: error.exception.ref)
+            } catch let error as JSError {
+                exception?.initialize(to: error.exception.ref)
             } catch let error as CustomStringConvertible {
                 var value: JSValueRef? = nil
                 var message: JSValueRef?  = object.valueOf(error.description).ref
                 value = JSObjectMakeError(object.context.ref, 1, &message, &value)
-                exception?.initialize(with: value)
+                exception?.initialize(to: value)
             } catch {
                 var value : JSValueRef? = nil
                 value = JSObjectMakeError(object.context.ref, 0, nil, &value)
-                exception?.initialize(with: value)
+                exception?.initialize(to: value)
             }
             return JSValueMakeUndefined(object.context.ref)
         }

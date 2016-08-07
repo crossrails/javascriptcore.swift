@@ -1,0 +1,206 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {};
+    objectVersion = 46;
+    rootObject = __RootObject_;
+    objects = {
+        __RootObject_ = {
+            isa = PBXProject;
+            attributes = {LastUpgradeCheck = 9999;};
+            buildConfigurationList = ___RootConfs_;
+            compatibilityVersion = 'Xcode 3.2';
+            developmentRegion = English;
+            hasScannedForEncodings = 0;
+            knownRegions = (en);
+            mainGroup = ___RootGroup_;
+            productRefGroup = ____Products_;
+            projectDirPath = '';
+            projectRoot = '';
+            targets = (______Target_javascriptcore_swift);
+        };
+        '__PBXFileRef_Package.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'Package.swift';
+            sourceTree = '<group>';
+        };
+        ___RootGroup_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_Package.swift', _____Configs_, _____Sources_,  Dependencies_, _______Tests_, ____Products_);
+            sourceTree = '<group>';
+        };
+        __PBXFileRef_javascriptcore_swift_Info.plist = {
+            isa = PBXFileReference;
+            lastKnownFileType = text.plist.xml;
+            path = 'javascriptcore.swift.xcodeproj/javascriptcore_swift_Info.plist';
+            sourceTree = SOURCE_ROOT;
+        };
+        _______Group_javascriptcore_swift = {
+            isa = PBXGroup;
+            name = 'javascriptcore.swift';
+            path = 'Source';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Source/JSContext.swift', '__PBXFileRef_Source/JSFunction.swift', '__PBXFileRef_Source/JSInstance.swift', '__PBXFileRef_Source/JSObject.swift', '__PBXFileRef_Source/JSProperty.swift', '__PBXFileRef_Source/JSThis.swift', '__PBXFileRef_Source/JSValue.swift', __PBXFileRef_javascriptcore_swift_Info.plist);
+        };
+        '__PBXFileRef_Source/JSContext.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSContext.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Source/JSFunction.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSFunction.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Source/JSInstance.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSInstance.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Source/JSObject.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSObject.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Source/JSProperty.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSProperty.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Source/JSThis.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSThis.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Source/JSValue.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'JSValue.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_javascriptcore_swift = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_javascriptcore_swift;
+            buildPhases = (CompilePhase_javascriptcore_swift, ___LinkPhase_javascriptcore_swift);
+            buildRules = ();
+            dependencies = ();
+            name = 'javascriptcore.swift';
+            productName = javascriptcore_swift;
+            productReference = _____Product_javascriptcore_swift;
+            productType = 'com.apple.product-type.framework';
+        };
+        _____Product_javascriptcore_swift = {
+            isa = PBXFileReference;
+            explicitFileType = 'wrapper.framework';
+            path = '<RelativePath:"javascriptcore_swift.framework">';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_javascriptcore_swift = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Source/JSContext.swift', '__src_cc_ref_Source/JSFunction.swift', '__src_cc_ref_Source/JSInstance.swift', '__src_cc_ref_Source/JSObject.swift', '__src_cc_ref_Source/JSProperty.swift', '__src_cc_ref_Source/JSThis.swift', '__src_cc_ref_Source/JSValue.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Source/JSContext.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSContext.swift';
+        };
+        '__src_cc_ref_Source/JSFunction.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSFunction.swift';
+        };
+        '__src_cc_ref_Source/JSInstance.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSInstance.swift';
+        };
+        '__src_cc_ref_Source/JSObject.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSObject.swift';
+        };
+        '__src_cc_ref_Source/JSProperty.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSProperty.swift';
+        };
+        '__src_cc_ref_Source/JSThis.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSThis.swift';
+        };
+        '__src_cc_ref_Source/JSValue.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Source/JSValue.swift';
+        };
+        ___LinkPhase_javascriptcore_swift = {
+            isa = PBXFrameworksBuildPhase;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _______Confs_javascriptcore_swift = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_javascriptcore_swift, _ReleaseConf_javascriptcore_swift);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_javascriptcore_swift = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'javascriptcore.swift.xcodeproj/javascriptcore_swift_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'javascriptcore_swift'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Debug;
+        };
+        _ReleaseConf_javascriptcore_swift = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'javascriptcore.swift.xcodeproj/javascriptcore_swift_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'javascriptcore_swift'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Release;
+        };
+        __Dependency_javascriptcore_swift = {
+            isa = PBXTargetDependency;
+            target = ______Target_javascriptcore_swift;
+        };
+        '__PBXFileRef_javascriptcore.swift.xcodeproj/Configs/Project.xcconfig' = {
+            isa = PBXFileReference;
+            lastKnownFileType = text.xcconfig;
+            path = 'javascriptcore.swift.xcodeproj/Configs/Project.xcconfig';
+            sourceTree = '<group>';
+        };
+        _____Configs_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_javascriptcore.swift.xcodeproj/Configs/Project.xcconfig');
+            name = Configs;
+            sourceTree = '<group>';
+        };
+        _____Sources_ = {
+            isa = PBXGroup;
+            children = (_______Group_javascriptcore_swift);
+            name = Sources;
+            sourceTree = '<group>';
+        };
+        ____Products_ = {
+            isa = PBXGroup;
+            children = (_____Product_javascriptcore_swift);
+            name = Products;
+            sourceTree = '<group>';
+        };
+        _______Debug_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_javascriptcore.swift.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Debug;
+        };
+        _____Release_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_javascriptcore.swift.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Release;
+        };
+        ___RootConfs_ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (_______Debug_, _____Release_);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+    };
+}
