@@ -1,7 +1,7 @@
 import Foundation
 import JavaScriptCore
 
-extension JSType : CustomStringConvertible {
+extension JSType: CustomStringConvertible {
     public var description: String {
         switch self {
         case kJSTypeNull:
@@ -22,12 +22,12 @@ extension JSType : CustomStringConvertible {
     }
 }
 
-class JSValue : CustomStringConvertible {
+class JSValue: CustomStringConvertible {
     
-    let ref :JSValueRef
-    let context :JSContext
+    let ref: JSValueRef
+    let context: JSContext
     
-    init(_ context :JSContext, ref :JSValueRef!) {
+    init(_ context: JSContext, ref: JSValueRef!) {
         self.ref = ref
         self.context = context
     }
@@ -82,9 +82,9 @@ class JSValue : CustomStringConvertible {
 
 class JSAnyObject {
     
-    let this :JSValue;
+    let this: JSValue;
     
-    init(_ instance :JSValue) {
+    init(_ instance: JSValue) {
         this = instance
         this.bind(self)
     }
@@ -134,7 +134,7 @@ extension String {
 
 extension Optional {
     init(_ value: JSValue, wrapped:@noescape(JSValue) -> Wrapped) {
-        self = JSValueIsNull(value.context.ref, value.ref) || JSValueIsUndefined(value.context.ref, value.ref) ? .none : wrapped(value)
+        self = JSValueIsNull(value.context.ref, value.ref) || JSValueIsUndefined(value.context.ref, value.ref) ? .none: wrapped(value)
     }
 }
 

@@ -1,15 +1,15 @@
 import Foundation
 import JavaScriptCore
 
-let length : JSProperty = "length"
-let message : JSProperty = "message"
-let name : JSProperty = "name"
-let Function : JSProperty = "Function"
+let length: JSProperty = "length"
+let message: JSProperty = "message"
+let name: JSProperty = "name"
+let Function: JSProperty = "Function"
 
-struct JSProperty : CustomStringConvertible, StringLiteralConvertible {
+struct JSProperty: CustomStringConvertible, StringLiteralConvertible {
     
-    private let string :StringLiteralType
-    let ref :JSStringRef
+    private let string: StringLiteralType
+    let ref: JSStringRef
     
     init(unicodeScalarLiteral value: String) {
         self.string = value

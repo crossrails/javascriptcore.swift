@@ -1,21 +1,21 @@
 import Foundation
 import JavaScriptCore
 
-let bindings = MapTable<AnyObject, JSValue>(keyOptions: [.objectPointerPersonality, .weakMemory], valueOptions: [.objectPointerPersonality])
+let bindings = NSMapTable<AnyObject, JSValue>(keyOptions: [.objectPointerPersonality, .weakMemory], valueOptions: [.objectPointerPersonality])
 
 struct JSContext {
     
-    let ref :JSContextRef
+    let ref: JSContextRef
     
     init() {
         self.init(JSGlobalContextCreate(nil))
     }
     
-    private init(_ ref :JSContextRef) {
+    private init(_ ref: JSContextRef) {
         self.ref = ref
     }
     
-    func eval(_ path :String) throws {
+    func eval(_ path: String) throws {
         let string = JSStringCreateWithCFString(try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) as String)
         let url = JSStringCreateWithCFString(path)
         defer {
@@ -27,21 +27,21 @@ struct JSContext {
         }
     }
     
-    func invoke<T>( _ f: @noescape(inout exception :JSValueRef? ) -> T) throws -> T {
-        var exception :JSValueRef? = nil
+    func invoke<T>( _ f: @noescape(exception: inout JSValueRef?) -> T) throws -> T {
+        var exception: JSValueRef? = nil
         let result = f(exception: &exception)
         if exception != nil {
             print("Exception thrown: \(String(self, ref: exception!))")
-            throw Error(JSValue(self, ref: exception!))
+            throw JSError(JSValue(self, ref: exception!))
         }
         return result
     }
     
 }
 
-public struct Error: ErrorProtocol, CustomStringConvertible {
+public struct JSError: Error, CustomStringConvertible {
     
-    let exception :JSValue
+    let exception: JSValue
     
     init(_ value: JSValue) {
         self.exception = value
@@ -52,7 +52,7 @@ public struct Error: ErrorProtocol, CustomStringConvertible {
     }
 }
 
-private func cast(_ any :Any) -> JSValue? {
+private func cast(_ any: Any) -> JSValue? {
     if let object = any as? AnyObject {
         if let value = bindings.object(forKey: object) {
             return value
