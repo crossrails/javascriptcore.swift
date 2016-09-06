@@ -134,7 +134,7 @@ extension String {
 
 extension Optional {
     init(_ value: JSValue, wrapped:@noescape(JSValue) -> Wrapped) {
-        self = JSValueIsNull(value.context.ref, value.ref) || JSValueIsUndefined(value.context.ref, value.ref) ? .none: wrapped(value)
+        self = JSValueIsNull(value.context.ref, value.ref) || JSValueIsUndefined(value.context.ref, value.ref) ? .none : wrapped(value)
     }
 }
 
