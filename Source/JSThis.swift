@@ -17,9 +17,9 @@ protocol JSThis: class {
     
     func valueOf(_ value: String) -> JSValue
     
-    func valueOf<Wrapped>(_ value: Optional<Wrapped>, wrapped: @noescape(Wrapped) -> JSValue) -> JSValue
+    func valueOf<Wrapped>(_ value: Optional<Wrapped>, wrapped: (Wrapped) -> JSValue) -> JSValue
     
-    func valueOf<Element>(_ value: Array<Element>, element: @noescape(Element) -> JSValue) -> JSValue
+    func valueOf<Element>(_ value: Array<Element>, element: (Element) -> JSValue) -> JSValue
     
     func valueOf(_ object: AnyObject) -> JSValue
     
@@ -52,11 +52,11 @@ extension JSValue: JSThis {
         return JSValue(context, ref: JSValueMakeString(context.ref, string))
     }
     
-    func valueOf<Wrapped>(_ value: Optional<Wrapped>, wrapped: @noescape(Wrapped) -> JSValue) -> JSValue {
+    func valueOf<Wrapped>(_ value: Optional<Wrapped>, wrapped: (Wrapped) -> JSValue) -> JSValue {
         return value == nil ? JSValue(context, ref: JSValueMakeNull(context.ref)): wrapped(value!)
     }
     
-    func valueOf<Element>(_ value: Array<Element>, element: @noescape(Element) -> JSValue) -> JSValue {
+    func valueOf<Element>(_ value: Array<Element>, element: (Element) -> JSValue) -> JSValue {
         return JSValue(context, ref: try! context.invoke {
             JSObjectMakeArray(self.context.ref, value.count, value.map({ element($0).ref }), &$0)
             })

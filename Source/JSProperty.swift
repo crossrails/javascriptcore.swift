@@ -6,7 +6,7 @@ let message: JSProperty = "message"
 let name: JSProperty = "name"
 let Function: JSProperty = "Function"
 
-struct JSProperty: CustomStringConvertible, StringLiteralConvertible {
+struct JSProperty: CustomStringConvertible, ExpressibleByStringLiteral {
     
     private let string: StringLiteralType
     let ref: JSStringRef

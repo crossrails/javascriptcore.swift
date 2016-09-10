@@ -16,8 +16,8 @@ struct JSContext {
     }
     
     func eval(_ path: String) throws {
-        let string = JSStringCreateWithCFString(try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) as String)
-        let url = JSStringCreateWithCFString(path)
+        let string = JSStringCreateWithCFString(try NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue) as CFString)
+        let url = JSStringCreateWithCFString(path as CFString)
         defer {
             JSStringRelease(url)
             JSStringRelease(string)
@@ -27,9 +27,9 @@ struct JSContext {
         }
     }
     
-    func invoke<T>( _ f: @noescape(exception: inout JSValueRef?) -> T) throws -> T {
+    func invoke<T>( _ f: (_ exception: inout JSValueRef?) -> T) throws -> T {
         var exception: JSValueRef? = nil
-        let result = f(exception: &exception)
+        let result = f(&exception)
         if exception != nil {
             print("Exception thrown: \(String(self, ref: exception!))")
             throw JSError(JSValue(self, ref: exception!))
@@ -53,10 +53,8 @@ public struct JSError: Error, CustomStringConvertible {
 }
 
 private func cast(_ any: Any) -> JSValue? {
-    if let object = any as? AnyObject {
-        if let value = bindings.object(forKey: object) {
-            return value
-        }
+    if let value = bindings.object(forKey: any as AnyObject?) {
+        return value
     }
     return nil
 }

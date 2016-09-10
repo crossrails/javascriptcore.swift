@@ -133,13 +133,13 @@ extension String {
 }
 
 extension Optional {
-    init(_ value: JSValue, wrapped:@noescape(JSValue) -> Wrapped) {
+    init(_ value: JSValue, wrapped:(JSValue) -> Wrapped) {
         self = JSValueIsNull(value.context.ref, value.ref) || JSValueIsUndefined(value.context.ref, value.ref) ? .none : wrapped(value)
     }
 }
 
 extension Array {
-    init(_ value: JSValue, element:@noescape(JSValue) -> Element) {
+    init(_ value: JSValue, element:(JSValue) -> Element) {
         if #available(OSX 10.11, *) {
             assert(JSValueIsArray(value.context.ref, value.ref), "Array expected but got \(JSValueGetType(value.context.ref, value.ref)): \(String(value.context, ref: value.ref))")
         }

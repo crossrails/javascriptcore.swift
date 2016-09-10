@@ -10,7 +10,7 @@ class JSObject: JSValue {
         self.init(context, object: object, callbacks: [:])
     }
     
-    convenience init(_ context: JSContext, callback: ([JSValue]) throws -> (JSValue?)) {
+    convenience init(_ context: JSContext, callback: @escaping ([JSValue]) throws -> (JSValue?)) {
         self.init(context, callbacks: ["Function": callback])
         JSObjectSetPrototype(context.ref, self.ref, context.globalObject[Function].ref)
     }
@@ -63,7 +63,7 @@ class JSObject: JSValue {
         definition.staticFunctions = UnsafePointer<JSStaticFunction>(functions)
         let clazz = JSClassCreate(&definition)
         super.init(context, ref: JSObjectMake(context.ref, clazz, nil))
-        assert(JSObjectSetPrivate(ref, UnsafeMutablePointer(Unmanaged.passRetained(self).toOpaque())))
+        assert(JSObjectSetPrivate(ref, Unmanaged.passRetained(self).toOpaque()))
         JSClassRelease(clazz)
     }
     
